@@ -31,7 +31,7 @@ jobs:
           ${{ env.REGISTRY }}/${{ env.IMAGE_PATH }}  
         tags: |
           type=raw,value=latest
-          type=sha.
+          type=sha
 
     - name: Login to Registry(aliyun)
       if: github.event_name == 'push'
