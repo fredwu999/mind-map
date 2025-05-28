@@ -3,8 +3,13 @@ name: Docker Image CI
 on:
   push:
     branches: [ "main" ]
+    tags: [ "v*" ]  # 添加 tag 触发条件
   pull_request:
     branches: [ "main" ]
+
+env:
+  REGISTRY: crpi-bmgvrp5x9mucxwvm.ap-southeast-1.personal.cr.aliyuncs.com/fredgo/my-ali-registry  # 默认仓库，改为私有仓库地址
+  IMAGE_NAME: ${{ github.repository }}  # 自动使用仓库名作为镜像名
 
 jobs:
 
@@ -23,9 +28,9 @@ jobs:
       with:
         # 自动生成语义化标签（如 latest, git-sha, 时间戳）
         tags: |
-          ${{ env.REGISTRY }}/mind-map:latest
-          ${{ env.REGISTRY }}/mind-map:${{ github.sha }}
-          ${{ env.REGISTRY }}/mind-map:${{ github.run_number }}
+          ${{ env.REGISTRY }}/ ${{ github.repository }} :latest
+          ${{ env.REGISTRY }}/ ${{ github.repository }} :${{ github.sha }}
+          ${{ env.REGISTRY }}/ ${{ github.repository }} :${{ github.run_number }}
 
     - name: Build and push
       uses: docker/build-push-action@v3
