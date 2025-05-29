@@ -10,7 +10,7 @@ on:
 env:
   REGISTRY: https://alivault.avallon.com.cn:5101  # 默认仓库，改为私有仓库地址
   
-  IMAGE_PATH: fredwu999/mind-map  # 完整镜像路径
+  IMAGE_PATH: mind-map  # 完整镜像路径
   DOCKERFILE_PATH: Dockerfile  # 新增 Dockerfile 路径变量
 
 jobs:
